@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 # Copyright 2013 Hewlett-Packard Development Company, L.P.
 # All Rights Reserved.
 #
@@ -60,13 +60,7 @@ PHASES = ['pre-configure',
 
 def timeout():
     p = psutil.Process()
-    try:
-        # psutils version >= 2
-        children = list(p.children(recursive=True))
-    except AttributeError:
-        children = list(p.get_children(recursive=True))
-
-    for child in children:
+    for child in p.children(recursive=True):
         child.kill()
 
 
